@@ -1,6 +1,9 @@
-const getAllDriversHandler = (req, res) => {
+const { apiDrivers } = require("../controllers/driversController");
+
+const getAllDriversHandler = async (req, res) => {
   try {
-    res.status(200).send("Aqui llegan los drivers");
+    const data = await apiDrivers(); //espero a q se ejecute apidrivers.
+    res.status(200).json(data);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

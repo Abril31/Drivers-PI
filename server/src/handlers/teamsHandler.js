@@ -1,6 +1,9 @@
-const getAllTeamsHandler = (req, res) => {
+const teams = require("../controllers/teamsController");
+
+const getAllTeamsHandler = async (req, res) => {
   try {
-    res.status(200).send("Se obtienen todos los TEAMS");
+    const dataTeams = await teams();
+    res.status(200).json(dataTeams);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

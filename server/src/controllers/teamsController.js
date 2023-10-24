@@ -18,7 +18,7 @@ const teams = async () => {
     // Filtrar y eliminar duplicados
     const finalTeams = [...new Set(filteredTeams)];
 
-    // Usar Promise.all para ejecutar las operaciones de base de datos en paralelo
+    // Cargar a la base de Datos
     await Promise.all(
       finalTeams.map(async (team) => {
         // Find or create para evitar duplicados en la base de datos

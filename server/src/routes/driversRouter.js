@@ -2,12 +2,12 @@ const { Router } = require("express");
 const {
   getAllDriversHandler,
   getDriverByIdHandler,
-  postDriverHandler,
+  createDriverHandler,
 } = require("../handlers/driversHandler");
 const driversRouter = Router();
 
 driversRouter.get("/", getAllDriversHandler);
-driversRouter.get("/:idDriver", getDriverByIdHandler);
-driversRouter.post("/", postDriverHandler);
+driversRouter.get("/:id", getDriverByIdHandler);
+driversRouter.post("/", createDriverHandler);
 
 module.exports = driversRouter;

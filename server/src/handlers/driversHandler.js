@@ -1,4 +1,5 @@
 const { allDrivers, driverById } = require("../controllers/driversController");
+const createDriver = require("../controllers/postDriverController");
 
 const getAllDriversHandler = async (req, res) => {
   try {
@@ -25,9 +26,22 @@ const getDriverByIdHandler = async (req, res) => {
   }
 };
 
-const createDriverHandler = (req, res) => {
+const createDriverHandler = async (req, res) => {
+  const { id, forename, surname, description, image, nationality, dob, teams } =
+    req.body;
   try {
-    res.status(201).send("Creación del driver");
+    const newDriver = await createDriver({
+      id,
+      forename,
+      surname,
+      description,
+      image,
+      nationality,
+      dob,
+      teams,
+    });
+
+    res.status(201).json(newDriver);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

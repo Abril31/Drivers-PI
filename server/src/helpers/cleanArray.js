@@ -12,7 +12,7 @@ const cleanArray = (array) => {
       image: element.image ? element.image.url : defaultImage,
       nationality: element.nationality,
       dob: element.dob,
-      teams: element.teams,
+      // teams: element.teams,
       created: false,
     };
   });

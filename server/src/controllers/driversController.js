@@ -1,5 +1,5 @@
 const axios = require("axios");
-const cleanArray = require("./helpers/cleanArray");
+const cleanArray = require("../helpers/cleanArray");
 const { Driver, Team } = require("../db");
 
 const allDrivers = async () => {

@@ -14,8 +14,7 @@ const teams = async () => {
           ? team.split(",").map((team) => team.trim())
           : team.trim()
       );
-
-    // Filtrar y eliminar duplicados
+    //Chau duplicados
     const finalTeams = [...new Set(filteredTeams)];
 
     // Cargar a la base de Datos

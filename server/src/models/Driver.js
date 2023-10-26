@@ -14,14 +14,19 @@ module.exports = (sequelize) => {
       forename: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          len: [1, 25],
+        },
       },
       surname: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          len: [1, 40],
+        },
       },
       description: {
         type: DataTypes.TEXT,
-        allowNull: true,
       },
       image: {
         type: DataTypes.STRING,
@@ -31,7 +36,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       dob: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATEONLY,
         allowNull: false,
       },
       created: {

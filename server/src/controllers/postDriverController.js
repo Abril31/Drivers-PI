@@ -32,7 +32,7 @@ const createDriver = async ({
     await createNewDriver.addTeams(databaseTeams);
     return createNewDriver;
   } catch (error) {
-    console.log("Error al crear el driver");
+    console.error("Error al crear el driver", error);
   }
 };
 module.exports = createDriver;

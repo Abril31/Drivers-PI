@@ -8,8 +8,8 @@ const teamsRouter = require("./routes/teamsRouter");
 const server = express();
 
 server.use(morgan("dev"));
-server.use(express.json());
 server.use(cors());
+server.use(express.json());
 
 server.use(router, driversRouter, teamsRouter);
 

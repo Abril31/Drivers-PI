@@ -1,10 +1,20 @@
-const { allDrivers, driverById } = require("../controllers/driversController");
+const {
+  driverById,
+  getDriverByName,
+  getAllDrivers,
+} = require("../controllers/driversController");
 const createDriver = require("../controllers/postDriverController");
 
-const getAllDriversHandler = async (req, res) => {
+const getDriversHandler = async (req, res) => {
+  const { name } = req.query;
   try {
-    const data = await allDrivers(); //espero a q se ejecute apidrivers.
-    res.status(200).json(data);
+    if (name) {
+      const driverByName = await getDriverByName(name);
+      res.status(200).json(driverByName);
+    } else {
+      const allDrivers = await getAllDrivers();
+      res.status(200).json(allDrivers);
+    }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -48,7 +58,7 @@ const createDriverHandler = async (req, res) => {
 };
 
 module.exports = {
-  getAllDriversHandler,
+  getDriversHandler,
   getDriverByIdHandler,
   createDriverHandler,
 };

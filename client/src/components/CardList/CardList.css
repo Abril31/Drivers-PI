@@ -1,0 +1,10 @@
+.cardlist-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(8, 400px);
+    gap: 2rem;
+    margin-top: 1.5rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-bottom: 1.5rem;
+}

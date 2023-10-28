@@ -1,0 +1,26 @@
+.sect{
+    background-color: rgb(168, 213, 141);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 2rem;
+
+}
+.text-container{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    margin: 2rem;
+    justify-content: space-around;
+}
+.img-container{
+    background-color: chocolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.image{
+    width: 40%;
+    height: 75%;
+    margin: 2rem 5rem;
+}

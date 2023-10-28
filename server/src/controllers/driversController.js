@@ -2,16 +2,23 @@ const axios = require("axios");
 const { cleanArray, cleanArrayId } = require("../helpers/cleaner");
 const { Driver, Team } = require("../db");
 const { Op } = require("sequelize");
-// const { Op } = require("sequelize");
 
 const getAllDrivers = async () => {
   //Get de la base de datos
-  const dataBaseDrivers = await Driver.findAll();
+  const dataBaseDrivers = await Driver.findAll({
+    include: {
+      model: Team,
+      attributes: ["name"],
+      through: {
+        attributes: [],
+      },
+    },
+  });
 
   const response = await axios.get("http://localhost:5000/drivers");
-  const apiDrivers = cleanArray(response.data); //unifica la info, no tocar!
+  const apiDrivers = cleanArray(response.data).slice(0, 31); //unifica la info, no tocar!
 
-  return [...dataBaseDrivers, ...apiDrivers];
+  return [...cleanArrayId(dataBaseDrivers), ...apiDrivers];
 };
 
 const getDriverByName = async (name) => {
@@ -26,7 +33,6 @@ const getDriverByName = async (name) => {
       driver.forename.toLowerCase() === name.toLowerCase() ||
       driver.surname.toLowerCase() === name.toLowerCase()
   );
-  console.log(driverFiltered);
 
   // Busco en la DB
   const dataBaseDriverName = await Driver.findAll({

@@ -1,0 +1,14 @@
+.main-form-cont {
+    display: block;
+    background-color: rgb(179, 231, 149);
+    padding: 2%;
+    height: 85vh;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 30%; /* Ajusta el ancho máximo según tus necesidades */
+    margin: auto; /* Centra el formulario horizontalmente */
+  }
+

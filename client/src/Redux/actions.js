@@ -1,4 +1,8 @@
-import { GET_DRIVERS, GET_DRIVER_BY_ID } from "./action-types";
+import {
+  GET_DRIVERS,
+  GET_DRIVER_BY_ID,
+  GET_DRIVER_BY_NAME,
+} from "./action-types";
 import axios from "axios";
 export const getDrivers = () => {
   return async function (dispatch) {
@@ -25,6 +29,22 @@ export const getDriver = (id) => {
       });
     } catch (error) {
       console.log("Error al recuperar al driver");
+    }
+  };
+};
+export const getDriverByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/drivers?name=${name}`
+      );
+      const driverByName = response.data;
+      dispatch({
+        type: GET_DRIVER_BY_NAME,
+        payload: driverByName,
+      });
+    } catch (error) {
+      console.log("Error en la búsqueda por nombre");
     }
   };
 };

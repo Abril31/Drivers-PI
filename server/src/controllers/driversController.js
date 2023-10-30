@@ -16,7 +16,7 @@ const getAllDrivers = async () => {
   });
 
   const response = await axios.get("http://localhost:5000/drivers");
-  const apiDrivers = cleanArray(response.data).slice(0, 31); //unifica la info, no tocar!
+  const apiDrivers = cleanArray(response.data); //unifica la info, no tocar!
 
   return [...cleanArrayId(dataBaseDrivers), ...apiDrivers];
 };

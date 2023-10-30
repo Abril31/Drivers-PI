@@ -10,14 +10,13 @@ function Detail() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (id) {
-      dispatch(getDriver(id));
-    }
-  }, [id, dispatch]);
-  if (!driver) {
-    return <p>Cargando...</p>;
-  }
-
+    dispatch(getDriver(id));
+    return () => {
+      getDriver("");
+    };
+  }, [id]);
+  const defaultImage =
+    "https://morguefile.nyc3.cdn.digitaloceanspaces.com/imageData/public/files/a/anthot4/07/p/51ff02ca581c4334ece364de7e102943.jpg";
   return (
     <section className="sect">
       <div className="text-container">
@@ -27,43 +26,17 @@ function Detail() {
         </h2>
         <h3>Nationality: {driver[0]?.nationality}</h3>
         <h4>Date of Birth: {driver[0]?.dob} </h4>
-        <h4>Teams: {driver[0]?.teams}</h4>
-        <p>Description: {driver[0]?.description}</p>
+        <h4>Teams: {driver[0]?.teams || ["Not Available"]}</h4>
+        <p>Description: {driver[0]?.description || "Not Available"}</p>
       </div>
       <div className="img-container">
-        <img src={driver[0]?.image} className="image" />
-        <Link to="/home">
+        <img src={driver[0]?.image || defaultImage} className="image" />
+        <Link to={"/home/"}>
           <button>BACK</button>
         </Link>
       </div>
     </section>
   );
 }
-//   return (
-//     <div className="">
-//       <Card
-//         id={driver.id}
-//         forename={driver.forename}
-//         surname={driver.surname}
-//         image={driver.image}
-//         teams={driver.teams}
-//       />
-//     </div>
-//   );
-// }
 
 export default Detail;
-// return (
-//   <div className="">
-//     {driver.map((e) => (
-//       <Card
-//         key={e.id}
-//         id={e.id}
-//         forename={e.forename}
-//         surname={e.surname}
-//         image={e.image}
-//         teams={e.teams}
-//       />
-//     ))}
-//   </div>
-// );

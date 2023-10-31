@@ -1,5 +1,6 @@
 import "./Form.css";
 import React, { useState } from "react";
+import { validate } from "../helpers/validate";
 
 const Form = () => {
   const [state, setState] = useState({
@@ -11,16 +12,31 @@ const Form = () => {
     dob: "",
     teams: [],
   });
-  const teams = ["Ferrari", "Mercedes", "Lotus", "Martini"];
+  const [errors, setErrors] = useState({
+    forename: "*Required",
+    surname: "*Required",
+    description: "*Required",
+    image: "",
+    nationality: "*Required",
+    dob: "*Required",
+    teams: "*Choose at least 1 team",
+  });
+  const teams = [
+    "Ferrari",
+    "Mercedes",
+    "Lotus",
+    "Martini",
+    "Minardi",
+    "Toro Rosso",
+  ];
   const handleChange = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value);
-
+    const name = event.target.name;
+    const value = event.target.value;
     // Manejo los cambios en el form
     if (event.target.name !== "teams") {
       setState({
         ...state,
-        [event.target.name]: event.target.value,
+        [event.target.name]: event.target.value, //capto lo q escribe el usuario
       });
     } else {
       // Evitar que se pise en teams
@@ -34,16 +50,29 @@ const Form = () => {
         });
       }
     }
+    const newErrors = validate({ ...state, [name]: value }, name);
+    setErrors({ ...errors, ...newErrors });
+  };
+
+  //Elimina el team agregado.
+  const remove = (teamToRemove) => {
+    let newTeams = state.teams.filter((team) => team !== teamToRemove); //
+    setState({
+      ...state,
+      teams: newTeams,
+    });
   };
 
   return (
     <div className="main-form-cont">
-      {console.log(state)}
+      {console.log(errors)}
       <form className="form-container">
         <label>Forename</label>
         <input onChange={handleChange} type="text" name="forename" />
+        <p>{errors.forename}</p>
         <label>Surname</label>
         <input onChange={handleChange} type="text" name="surname" />
+        <p>{errors.surname}</p>
         <label>
           Description
           <textarea
@@ -54,12 +83,17 @@ const Form = () => {
             cols="50"
           />
         </label>
+        <p>{errors.description}</p>
         <label>Image</label>
         <input onChange={handleChange} type="text" name="image" />
         <label>Nationality</label>
         <input onChange={handleChange} type="text" name="nationality" />
+        <p>{errors.nationality}</p>
+
         <label>Birth Date</label>
         <input onChange={handleChange} type="date" name="dob" />
+        <p>{errors.dob}</p>
+
         <select onChange={handleChange} name="teams">
           {teams.map((team) => (
             <option value={team} key={team}>
@@ -67,10 +101,18 @@ const Form = () => {
             </option>
           ))}
         </select>
+        <p>{errors.teams}</p>
         {state.teams.map((team) => (
           <div key={team}>
             <span>{team}</span>
-            <button>X</button>
+
+            <button
+              onClick={() => {
+                remove(team);
+              }}
+            >
+              x
+            </button>
           </div>
         ))}
 

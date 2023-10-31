@@ -1,4 +1,6 @@
 import {
+  CREATE_DRIVER,
+  GET_ALL_TEAMS,
   GET_DRIVERS,
   GET_DRIVER_BY_ID,
   GET_DRIVER_BY_NAME,
@@ -45,6 +47,31 @@ export const getDriverByName = (name) => {
       });
     } catch (error) {
       console.log("Error en la búsqueda por nombre");
+    }
+  };
+};
+export const getTeams = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:3001/teams");
+      const dataTeams = response.data;
+      dispatch({
+        type: GET_ALL_TEAMS,
+        payload: dataTeams,
+      });
+    } catch (error) {
+      console.log("Error al traer los teams");
+    }
+  };
+};
+export const postDriver = (state) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("http://localhost:3001/drivers", state);
+      const createDriver = response.data;
+      return createDriver;
+    } catch (error) {
+      console.log("Error al crear el driver");
     }
   };
 };

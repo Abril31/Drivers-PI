@@ -1,4 +1,5 @@
 import {
+  GET_ALL_TEAMS,
   GET_DRIVERS,
   GET_DRIVER_BY_ID,
   GET_DRIVER_BY_NAME,
@@ -8,6 +9,7 @@ let initialState = {
   drivers: [],
   copyDrivers: [],
   driver: [],
+  allTeams: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -26,6 +28,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         drivers: action.payload,
+      };
+    case GET_ALL_TEAMS:
+      return {
+        ...state,
+        allTeams: action.payload,
       };
     default:
       return { ...state };

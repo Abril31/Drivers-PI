@@ -1,8 +1,15 @@
 import "./Form.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { validate } from "../helpers/validate";
+import { getTeams, postDriver } from "../../Redux/actions";
 
 const Form = () => {
+  const dispatch = useDispatch();
+  const allTeams = useSelector((state) => state.allTeams);
+  useEffect(() => {
+    dispatch(getTeams());
+  }, []);
   const [state, setState] = useState({
     forename: "",
     surname: "",
@@ -21,14 +28,7 @@ const Form = () => {
     dob: "*Required",
     teams: "*Choose at least 1 team",
   });
-  const teams = [
-    "Ferrari",
-    "Mercedes",
-    "Lotus",
-    "Martini",
-    "Minardi",
-    "Toro Rosso",
-  ];
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -53,6 +53,12 @@ const Form = () => {
     const newErrors = validate({ ...state, [name]: value }, name);
     setErrors({ ...errors, ...newErrors });
   };
+  const disabledButton = () => {
+    for (let error in errors) {
+      if (errors[error] !== "") return true; // Si hay al menos un error, deshabilitamos el botón
+    }
+    return false; // No hay errores, habilitamos el botón
+  };
 
   //Elimina el team agregado.
   const remove = (teamToRemove) => {
@@ -62,11 +68,14 @@ const Form = () => {
       teams: newTeams,
     });
   };
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(postDriver(state));
+  };
   return (
     <div className="main-form-cont">
       {console.log(errors)}
-      <form className="form-container">
+      <form onSubmit={handleSubmit} className="form-container">
         <label>Forename</label>
         <input onChange={handleChange} type="text" name="forename" />
         <p>{errors.forename}</p>
@@ -95,7 +104,7 @@ const Form = () => {
         <p>{errors.dob}</p>
 
         <select onChange={handleChange} name="teams">
-          {teams.map((team) => (
+          {allTeams.map((team) => (
             <option value={team} key={team}>
               {team}
             </option>
@@ -116,7 +125,9 @@ const Form = () => {
           </div>
         ))}
 
-        <button>Create your Driver!</button>
+        <button type="submit" disabled={disabledButton()}>
+          Create your Driver!
+        </button>
       </form>
     </div>
   );

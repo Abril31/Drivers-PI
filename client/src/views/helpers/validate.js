@@ -6,6 +6,8 @@ export const validate = (state, name) => {
       newErrors.forename = "*Forename is required";
     } else if (state.forename.length > 25) {
       newErrors.forename = "Forename shouldn't have more than 25 characters";
+    } else if (!/^[a-zA-Z-ñ\s]+$/.test(state.forename)) {
+      newErrors.forename = "Forename should only contain letters and spaces";
     } else {
       newErrors.forename = "";
     }
@@ -16,6 +18,8 @@ export const validate = (state, name) => {
       newErrors.surname = "*Surename is required";
     } else if (state.surname.length > 40) {
       newErrors.surname = "Surename shouldn't have more than 40 characters";
+    } else if (!/^[a-zA-Z-ñ\s]+$/.test(state.surname)) {
+      newErrors.surname = "Surname should only contain letters and spaces";
     } else {
       newErrors.surname = "";
     }
@@ -24,11 +28,27 @@ export const validate = (state, name) => {
   if (name === "description") {
     if (state.description === "") {
       newErrors.description = "*Description is required";
-    } else if (state.description.length > 150) {
+    } else if (
+      state.description.length < 30 ||
+      state.description.length > 150
+    ) {
       newErrors.description =
         "Description shouldn't have more than 120 characters";
     } else {
       newErrors.description = "";
+    }
+  }
+  if (name === "nationality") {
+    if (state.nationality === "") {
+      newErrors.nationality = "*Nationality is required";
+    } else if (state.nationality.length < 4 || state.nationality.length > 10) {
+      newErrors.nationality =
+        "Nationality should be between 4 and 10 characters";
+    } else if (!/^[a-zA-Z-ñ\s]+$/.test(state.nationality)) {
+      newErrors.nationality =
+        "Nationality should only contain letters and spaces";
+    } else {
+      newErrors.nationality = "";
     }
   }
 

@@ -1,9 +1,12 @@
 import {
-  CREATE_DRIVER,
+  CLEAN_DRIVER,
+  // CREATE_DRIVER,
   GET_ALL_TEAMS,
   GET_DRIVERS,
   GET_DRIVER_BY_ID,
   GET_DRIVER_BY_NAME,
+  ORDER,
+  REVERSE,
 } from "./action-types";
 import axios from "axios";
 export const getDrivers = () => {
@@ -64,14 +67,23 @@ export const getTeams = () => {
     }
   };
 };
+export const cleanDriver = () => {
+  return { type: CLEAN_DRIVER };
+};
 export const postDriver = (state) => {
-  return async function (dispatch) {
+  return async function () {
     try {
       const response = await axios.post("http://localhost:3001/drivers", state);
       const createDriver = response.data;
       return createDriver;
     } catch (error) {
-      console.log("Error al crear el driver");
+      alert("Sorry, an error occurred");
     }
   };
+};
+export const orderDrivers = () => {
+  return { type: ORDER };
+};
+export const orderReverseDrivers = () => {
+  return { type: REVERSE };
 };

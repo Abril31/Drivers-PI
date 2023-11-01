@@ -1,7 +1,7 @@
 import "./Detail.css";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDriver } from "../../Redux/actions";
+import { cleanDriver, getDriver } from "../../Redux/actions";
 import { Link, useParams } from "react-router-dom";
 
 function Detail() {
@@ -11,9 +11,7 @@ function Detail() {
 
   useEffect(() => {
     dispatch(getDriver(id));
-    return () => {
-      getDriver("");
-    };
+    return () => dispatch(cleanDriver());
   }, [id]);
   const defaultImage =
     "https://morguefile.nyc3.cdn.digitaloceanspaces.com/imageData/public/files/a/anthot4/07/p/51ff02ca581c4334ece364de7e102943.jpg";
@@ -32,7 +30,7 @@ function Detail() {
       <div className="img-container">
         <img src={driver[0]?.image || defaultImage} className="image" />
         <Link to={"/home/"}>
-          <button>BACK</button>
+          <button onclick={() => cleanDriver()}>BACK</button>
         </Link>
       </div>
     </section>

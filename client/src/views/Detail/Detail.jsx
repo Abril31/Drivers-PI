@@ -30,7 +30,7 @@ function Detail() {
       <div className="img-container">
         <img src={driver[0]?.image || defaultImage} className="image" />
         <Link to={"/home/"}>
-          <button onclick={() => cleanDriver()}>BACK</button>
+          <button onClick={() => cleanDriver()}>BACK</button>
         </Link>
       </div>
     </section>

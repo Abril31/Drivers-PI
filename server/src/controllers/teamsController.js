@@ -15,7 +15,7 @@ const teams = async () => {
           : team.trim()
       );
     //Chau duplicados
-    const finalTeams = [...new Set(filteredTeams)];
+    const finalTeams = [...new Set(filteredTeams)].sort();
 
     // Cargar a la base de Datos
     await Promise.all(

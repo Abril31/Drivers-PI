@@ -1,7 +1,7 @@
 const cleanArray = (array) => {
   return array.map((driver) => {
     let defaultImage =
-      "https://media.gettyimages.com/id/1126025369/es/foto/piloto-de-carreras-de-monoplazas.jpg?s=612x612&w=0&k=20&c=rVDhWUcXltKqJvtyiCIX79Qs29iMtNfXg-_Ma96G_8I=";
+      "https://images.pexels.com/photos/18373115/pexels-photo-18373115/free-photo-of-coche-vehiculo-prisa-neumatico.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
     return {
       id: driver.id,
       forename: driver.name.forename,
@@ -19,7 +19,7 @@ const cleanArrayId = (array) => {
   return array.map((driver) => {
     let teams = driver.Teams ? driver.Teams.map((team) => team.name) : []; // Acceder a Teams y extraer los nombres
     let defaultImage =
-      "https://media.gettyimages.com/id/1126025369/es/foto/piloto-de-carreras-de-monoplazas.jpg?s=612x612&w=0&k=20&c=rVDhWUcXltKqJvtyiCIX79Qs29iMtNfXg-_Ma96G_8I=";
+      "https://images.pexels.com/photos/18373115/pexels-photo-18373115/free-photo-of-coche-vehiculo-prisa-neumatico.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
     return {
       id: driver.id,
       forename: driver.forename,

@@ -1,11 +1,15 @@
 import {
   CLEAN_DRIVER,
+  FILTER_BY_ORIGIN,
+  FILTER_BY_TEAM,
   GET_ALL_TEAMS,
   GET_DRIVERS,
   GET_DRIVER_BY_ID,
-  GET_DRIVER_BY_NAME,
   ORDER,
+  ORDER_BY_DOB,
+  RESET,
   REVERSE,
+  SEARCH_DRIVER,
 } from "./action-types";
 
 let initialState = {
@@ -13,6 +17,7 @@ let initialState = {
   copyDrivers: [],
   driver: [],
   allTeams: [],
+  filteredDrivers: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,7 +25,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         drivers: action.payload,
-        copyDrivers: action.payload,
+        copyDrivers: action.payload, // copyDrivers NUNCA se modifica.
       };
     case GET_DRIVER_BY_ID:
       return {
@@ -32,7 +37,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         driver: [],
       };
-    case GET_DRIVER_BY_NAME:
+    case SEARCH_DRIVER:
       return {
         ...state,
         drivers: action.payload,
@@ -42,8 +47,18 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allTeams: action.payload,
       };
+    case FILTER_BY_TEAM:
+      const teamFilter = action.payload;
+      const filteredDrivers = state.drivers.filter(
+        (driver) => driver.teams && driver.teams.includes(teamFilter)
+      );
+      return {
+        ...state,
+        drivers: filteredDrivers,
+      };
+
     case ORDER:
-      const sorted = state.copyDrivers.sort((a, b) => {
+      const sorted = state.drivers.sort((a, b) => {
         const nameA = a.forename.toLowerCase();
         const nameB = b.forename.toLowerCase();
         if (nameA < nameB) return -1;
@@ -52,10 +67,10 @@ const rootReducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        drivers: sorted,
+        drivers: [...sorted],
       };
     case REVERSE:
-      const sortedZA = state.copyDrivers.sort((a, b) => {
+      const sortedZA = state.drivers.sort((a, b) => {
         const nameA = a.forename.toLowerCase();
         const nameB = b.forename.toLowerCase();
         if (nameA < nameB) return -1;
@@ -64,7 +79,37 @@ const rootReducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        drivers: sortedZA.reverse(),
+        drivers: [...sortedZA].reverse(),
+      };
+    case ORDER_BY_DOB:
+      const orderedDob = (a, b) => {
+        const dateA = new Date(a.dob);
+        const dateB = new Date(b.dob);
+        return dateA - dateB;
+      };
+      return {
+        ...state,
+        drivers: [...state.drivers.sort(orderedDob)],
+      };
+    case FILTER_BY_ORIGIN:
+      if (action.payload === "Api") {
+        const apiDrivers = state.drivers.filter((driver) => !driver.created);
+        return { ...state, filteredDrivers: apiDrivers };
+      } else if (action.payload === "Database") {
+        const databaseDrivers = state.drivers.filter(
+          (driver) => driver.created
+        );
+        return { ...state, filteredDrivers: databaseDrivers };
+      } else if (action.payload === "All") {
+        return { ...state, filteredDrivers: [...state.copyDrivers] };
+      } else {
+        // Si el origen no es "Api" ni "Database", mostrar todos los conductores.
+        return { ...state, filteredDrivers: state.drivers };
+      }
+    case RESET:
+      return {
+        ...state,
+        drivers: [...state.copyDrivers],
       };
     default:
       return { ...state };

@@ -7,7 +7,8 @@ const CardList = ({ firstDriverIndex, lastDriverIndex }) => {
   const drivers = useSelector((state) => state.drivers);
   const currentDrivers = drivers.slice(firstDriverIndex, lastDriverIndex);
   const defaultImage =
-    "https://morguefile.nyc3.cdn.digitaloceanspaces.com/imageData/public/files/a/anthot4/07/p/51ff02ca581c4334ece364de7e102943.jpg";
+    "https://images.pexels.com/photos/18373115/pexels-photo-18373115/free-photo-of-coche-vehiculo-prisa-neumatico.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+
   //para evitar el error de la búsqueda por nombre
 
   if (!Array.isArray(currentDrivers)) {

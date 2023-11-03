@@ -1,12 +1,16 @@
 import {
   CLEAN_DRIVER,
+  FILTER_BY_ORIGIN,
+  FILTER_BY_TEAM,
   // CREATE_DRIVER,
   GET_ALL_TEAMS,
   GET_DRIVERS,
   GET_DRIVER_BY_ID,
-  GET_DRIVER_BY_NAME,
   ORDER,
+  ORDER_BY_DOB,
+  RESET,
   REVERSE,
+  SEARCH_DRIVER,
 } from "./action-types";
 import axios from "axios";
 export const getDrivers = () => {
@@ -37,22 +41,23 @@ export const getDriver = (id) => {
     }
   };
 };
-export const getDriverByName = (name) => {
+export const searchDriver = (name) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
         `http://localhost:3001/drivers?name=${name}`
       );
-      const driverByName = response.data;
+      const getDriverByName = response.data;
       dispatch({
-        type: GET_DRIVER_BY_NAME,
-        payload: driverByName,
+        type: SEARCH_DRIVER,
+        payload: getDriverByName,
       });
     } catch (error) {
-      console.log("Error en la búsqueda por nombre");
+      alert(error.response.data.error);
     }
   };
 };
+
 export const getTeams = () => {
   return async function (dispatch) {
     try {
@@ -64,6 +69,19 @@ export const getTeams = () => {
       });
     } catch (error) {
       console.log("Error al traer los teams");
+    }
+  };
+};
+export const filterTeam = (teamSelected) => {
+  //Valor de option
+  return async function (dispatch) {
+    try {
+      dispatch({
+        type: FILTER_BY_TEAM,
+        payload: teamSelected,
+      });
+    } catch (error) {
+      console.error("Something went wrong", error);
     }
   };
 };
@@ -86,4 +104,21 @@ export const orderDrivers = () => {
 };
 export const orderReverseDrivers = () => {
   return { type: REVERSE };
+};
+export const orderByDob = () => {
+  return { type: ORDER_BY_DOB };
+};
+export const filterBySource = (source) => {
+  return { type: FILTER_BY_ORIGIN, payload: source };
+};
+export const restart = () => {
+  return async function (dispatch) {
+    try {
+      dispatch({
+        type: RESET,
+      });
+    } catch (error) {
+      console.log("Something went wrong");
+    }
+  };
 };

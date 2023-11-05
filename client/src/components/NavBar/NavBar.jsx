@@ -12,7 +12,7 @@ const NavBar = () => {
       <Link to="/form">
         <h2>Create</h2>
       </Link>
-      <Link>
+      <Link to="/history">
         <h2>History</h2>
       </Link>
       <SearchBar />

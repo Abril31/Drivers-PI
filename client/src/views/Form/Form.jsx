@@ -31,20 +31,19 @@ const Form = () => {
 
   const handleChange = (event) => {
     const name = event.target.name;
-    const value = event.target.value;
+    const value = event.target.value; //capto lo q escribe el usuario
     // Manejo los cambios en el form
-    if (event.target.name !== "teams") {
+    if (name !== "teams") {
       setState({
         ...state,
-        [event.target.name]: event.target.value, //capto lo q escribe el usuario
+        [name]: value,
       });
     } else {
       // Evitar que se pise en teams
-      if (!state.teams.includes(event.target.value)) {
+      if (!state.teams.includes(value)) {
         //Evito agregar repetidos y creo una nueva copia del array
-        let newTeams = [...state.teams, event.target.value];
+        let newTeams = [...state.teams, value];
         setState({
-          //actualizo el estado
           ...state,
           teams: newTeams,
         });
@@ -70,16 +69,20 @@ const Form = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(postDriver(state));
+    dispatch(postDriver(state))
+      .then(() => alert("Driver created successfully 🏁!"))
+      .catch((error) => {
+        alert("There was a problem 😥, try again, please", error);
+      });
   };
   return (
     <div className="main-form-cont">
       {console.log(errors)}
       <form onSubmit={handleSubmit} className="form-container">
-        <label>Forename</label>
+        <label>Name</label>
         <input onChange={handleChange} type="text" name="forename" />
         <p>{errors.forename}</p>
-        <label>Surname</label>
+        <label>Lastname</label>
         <input onChange={handleChange} type="text" name="surname" />
         <p>{errors.surname}</p>
         <label>

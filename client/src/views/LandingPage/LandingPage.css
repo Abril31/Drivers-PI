@@ -1,0 +1,16 @@
+.land-container {
+    /* background-color: blueviolet; */
+    height: 100vh;
+    background-image: url("./f6.png");
+    background-size: contain;
+    background-repeat: no-repeat, no-repeat;
+    background-position: left, right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.btn-land{
+padding: 3%;
+width: 150%;
+}

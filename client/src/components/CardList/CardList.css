@@ -1,7 +1,7 @@
 .cardlist-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(8, 400px);
+    grid-template-rows: repeat(3, 400px);
     gap: 2rem;
     margin-top: 1.5rem;
     margin-left: 3rem;

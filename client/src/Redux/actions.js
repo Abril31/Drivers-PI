@@ -23,7 +23,7 @@ export const getDrivers = () => {
         payload: drivers,
       });
     } catch (error) {
-      console.log("Error al recuperar los drivers");
+      alert("There was a problem", error.message);
     }
   };
 };
@@ -37,7 +37,7 @@ export const getDriver = (id) => {
         payload: driver,
       });
     } catch (error) {
-      console.log("Error al recuperar al driver");
+      alert("Driver not found", error.message);
     }
   };
 };
@@ -53,7 +53,10 @@ export const searchDriver = (name) => {
         payload: getDriverByName,
       });
     } catch (error) {
-      alert(error.response.data.error);
+      alert(
+        "Driver not found 😥, please try a different name...",
+        error.message
+      );
     }
   };
 };

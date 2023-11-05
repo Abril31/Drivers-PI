@@ -17,7 +17,6 @@ let initialState = {
   copyDrivers: [],
   driver: [],
   allTeams: [],
-  filteredDrivers: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -41,6 +40,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         drivers: action.payload,
+        driver: action.payload,
       };
     case GET_ALL_TEAMS:
       return {
@@ -49,12 +49,12 @@ const rootReducer = (state = initialState, action) => {
       };
     case FILTER_BY_TEAM:
       const teamFilter = action.payload;
-      const filteredDrivers = state.drivers.filter(
+      const filteredTeams = state.drivers.filter(
         (driver) => driver.teams && driver.teams.includes(teamFilter)
       );
       return {
         ...state,
-        drivers: filteredDrivers,
+        drivers: [...filteredTeams],
       };
 
     case ORDER:
@@ -93,23 +93,25 @@ const rootReducer = (state = initialState, action) => {
       };
     case FILTER_BY_ORIGIN:
       if (action.payload === "Api") {
-        const apiDrivers = state.drivers.filter((driver) => !driver.created);
-        return { ...state, filteredDrivers: apiDrivers };
+        const apiDrivers = state.copyDrivers.filter(
+          (driver) => !driver.created
+        );
+        return { ...state, drivers: [...apiDrivers] };
       } else if (action.payload === "Database") {
-        const databaseDrivers = state.drivers.filter(
+        const databaseDrivers = state.copyDrivers.filter(
           (driver) => driver.created
         );
-        return { ...state, filteredDrivers: databaseDrivers };
+        return { ...state, drivers: [...databaseDrivers] };
       } else if (action.payload === "All") {
-        return { ...state, filteredDrivers: [...state.copyDrivers] };
+        return { ...state, drivers: [...state.copyDrivers] };
       } else {
-        // Si el origen no es "Api" ni "Database", mostrar todos los conductores.
-        return { ...state, filteredDrivers: state.drivers };
+        return { ...state, drivers: [...state.drivers] };
       }
+
     case RESET:
       return {
         ...state,
-        drivers: [...state.copyDrivers],
+        copyDrivers: [...state.copyDrivers],
       };
     default:
       return { ...state };

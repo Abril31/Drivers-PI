@@ -1,5 +1,5 @@
 import "./Home.css";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardList from "../../components/CardList/CardList";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,22 +13,25 @@ import {
   restart,
 } from "../../Redux/actions.js";
 import { Pagination } from "../../components/Pagination/Pagination";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const driversPerPage = 40;
+  const driversPerPage = 9;
   const drivers = useSelector((state) => state.drivers);
   const allTeams = useSelector((state) => state.allTeams);
-  const filteredDrivers = useSelector((state) => state.filteredDrivers);
   const totalDrivers = drivers.length;
   const dispatch = useDispatch();
   const lastDriverIndex = currentPage * driversPerPage;
   const firstDriverIndex = lastDriverIndex - driversPerPage;
 
+  const { id } = useParams();
+
   useEffect(() => {
     dispatch(getDrivers());
     dispatch(getTeams());
   }, [dispatch]);
+
   const filterByTeam = (event) => {
     dispatch(filterTeam(event.target.value));
   };
@@ -82,6 +85,7 @@ const Home = () => {
       </div>
       <div className="cardlist-div">
         <CardList
+          searchDriverById={id}
           firstDriverIndex={firstDriverIndex}
           lastDriverIndex={lastDriverIndex}
         />

@@ -1,10 +1,8 @@
 .land-container {
     /* background-color: blueviolet; */
     height: 100vh;
-    background-image: url("./f6.png");
-    background-size: contain;
-    background-repeat: no-repeat, no-repeat;
-    background-position: left, right;
+    background-image: url("./f22.png");
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;

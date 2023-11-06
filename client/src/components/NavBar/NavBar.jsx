@@ -6,15 +6,13 @@ import SearchBar from "../SearchBar/SearchBar";
 const NavBar = () => {
   return (
     <div className="nav-container">
-      <Link to="/home">
+      <Link to="/home" className="link-nav">
         <h2>Home</h2>
       </Link>
-      <Link to="/form">
+      <Link to="/form" className="link-nav">
         <h2>Create</h2>
       </Link>
-      <Link to="/history">
-        <h2>History</h2>
-      </Link>
+
       <SearchBar />
     </div>
   );

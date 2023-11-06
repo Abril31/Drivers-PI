@@ -22,8 +22,6 @@ const getAllDrivers = async () => {
 };
 
 const getDriverByName = async (name) => {
-  console.log("Entrando en driverByName");
-
   // Busco en la API
   const response = await axios.get("http://localhost:5000/drivers");
   const apiDrivers = cleanArray(response.data);
@@ -53,9 +51,9 @@ const getDriverByName = async (name) => {
   });
 
   const result = [...driverFiltered, ...dataBaseDriverName];
-
-  if (result.length === 0) {
-    return "Driver not found, try a different name";
+  console.log(result);
+  if (response.data.length === 0) {
+    throw new Error(`No driver found with the name: ${name}`);
   }
 
   return result;

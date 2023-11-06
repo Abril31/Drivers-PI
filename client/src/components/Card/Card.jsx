@@ -6,13 +6,20 @@ const Card = ({ id, forename, surname, image, teams, dob }) => {
   return (
     <Link className="link-card" to={`/detail/${id}`}>
       <div className="card-container">
-        <h4> {id} </h4>
-        <h3>
-          {forename} {surname}
-        </h3>
-        <img src={image} alt={forename} />
-        <p>Teams: {teams}</p>
-        <span>Date of Birth: {dob}</span>
+        <div className="card-img">
+          <img src={image} alt={forename} />
+        </div>
+        <div className="cont-2">
+          <div className="text-cont">
+            <h2>
+              {forename} {surname}
+            </h2>
+            <div>
+              <p>{teams}</p>
+              <span>Date of Birth: {dob}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </Link>
   );

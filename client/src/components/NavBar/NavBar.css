@@ -1,6 +1,13 @@
 .nav-container{
-    background-color: rgb(224, 224, 39);
+    background-color: #DD1C1A;
     display: flex;
     justify-content: space-evenly;
     padding: 1%;
+   
+}
+.nav-container h2 {
+    color: white; 
+}
+.link-nav{
+    text-decoration: none; 
 }

@@ -1,5 +1,5 @@
 .cont-pag-or{
-    background-color: rgb(71, 227, 227);
+    background-color: rgb(39, 70, 70);
     display: flex;
     flex-direction: row;
     height: 10vh;
@@ -9,5 +9,7 @@
     
 }
 .cardlist-div{
-    border: 3px solid green;
+    border: 1px solid green;
+    /* background-color: beige; */
+    /* background-image: url("./f22.png"); */
 }

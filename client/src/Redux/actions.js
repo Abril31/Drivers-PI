@@ -8,6 +8,7 @@ import {
   GET_DRIVER_BY_ID,
   ORDER,
   ORDER_BY_DOB,
+  ORDER_REVERSE_BY_DOB,
   RESET,
   REVERSE,
   SEARCH_DRIVER,
@@ -84,7 +85,7 @@ export const filterTeam = (teamSelected) => {
         payload: teamSelected,
       });
     } catch (error) {
-      console.error("Something went wrong", error);
+      alert("Something went wrong", error.message);
     }
   };
 };
@@ -111,6 +112,9 @@ export const orderReverseDrivers = () => {
 export const orderByDob = () => {
   return { type: ORDER_BY_DOB };
 };
+export const orderReverseByDob = () => {
+  return { type: ORDER_REVERSE_BY_DOB };
+};
 export const filterBySource = (source) => {
   return { type: FILTER_BY_ORIGIN, payload: source };
 };
@@ -121,7 +125,7 @@ export const restart = () => {
         type: RESET,
       });
     } catch (error) {
-      console.log("Something went wrong");
+      console.error("Something went wrong", error);
     }
   };
 };

@@ -12,7 +12,6 @@ const NavBar = () => {
       <Link to="/form" className="link-nav">
         <h2>Create</h2>
       </Link>
-
       <SearchBar />
     </div>
   );

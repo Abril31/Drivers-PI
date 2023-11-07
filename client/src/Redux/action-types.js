@@ -6,7 +6,8 @@ export const SEARCH_DRIVER = "SEARCH_DRIVER";
 export const ORDER = "ORDER";
 export const REVERSE = "REVERSE";
 export const FILTER_BY_TEAM = "FILTER_BY_TEAM";
-export const ORDER_BY_DOB = "RESET";
+export const ORDER_BY_DOB = "ORDER_BY_DOB";
+export const ORDER_REVERSE_BY_DOB = "ORDER_REVERSE_BY_DOB";
 export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 export const RESET = "RESET";
 

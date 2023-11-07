@@ -16,24 +16,47 @@ function Detail() {
   const defaultImage =
     "https://morguefile.nyc3.cdn.digitaloceanspaces.com/imageData/public/files/a/anthot4/07/p/51ff02ca581c4334ece364de7e102943.jpg";
   return (
-    <section className="sect">
-      <div className="text-container">
-        <h1>{driver[0]?.id}</h1>
-        <h2>
-          Name: {driver[0]?.forename} {driver[0]?.surname}
-        </h2>
-        <h3>Nationality: {driver[0]?.nationality}</h3>
-        <h4>Date of Birth: {driver[0]?.dob} </h4>
-        <h4>Teams: {driver[0]?.teams || ["Not Available"]}</h4>
-        <p>Description: {driver[0]?.description || "Not Available"}</p>
-      </div>
-      <div className="img-container">
-        <img src={driver[0]?.image || defaultImage} className="image" />
-        <Link to={"/home/"}>
-          <button onClick={() => cleanDriver()}>BACK</button>
-        </Link>
-      </div>
-    </section>
+    <div className="detail-cont">
+      <section className="sect">
+        <div className="text-container">
+          <div className="main-info">
+            <div className="info">
+              <h3 className="tex-name">
+                <span className="name-label">Name:</span> {driver[0]?.forename}
+                {driver[0]?.surname}
+              </h3>
+              <h3 className="tex-name">
+                <span className="name-label">Date of Birth: </span>
+                {driver[0]?.dob}
+              </h3>
+            </div>
+            <div className="info-2">
+              <h3 className="tex-name">
+                <span className="name-label"> Nationality: </span>
+                {driver[0]?.nationality}
+              </h3>
+              <h3 className="tex-name">
+                <span className="name-label">Teams: </span>
+                {driver[0]?.teams || ["Not Available"]}
+              </h3>
+            </div>
+          </div>
+          <div className="description">
+            <h3>Description:</h3>
+            <p> {driver[0]?.description || "Not Available"}</p>
+          </div>
+          <div className="btn-container-detail">
+            <Link to={"/home/"}>
+              <button onClick={() => cleanDriver()}>BACK</button>
+            </Link>
+          </div>
+        </div>
+        <div className="img-container">
+          <h1> ID: {driver[0]?.id}</h1>
+          <img src={driver[0]?.image || defaultImage} className="image" />
+        </div>
+      </section>
+    </div>
   );
 }
 

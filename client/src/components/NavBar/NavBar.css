@@ -1,13 +1,16 @@
 .nav-container{
+    box-sizing: border-box;
     background-color: #DD1C1A;
     display: flex;
-    justify-content: space-evenly;
-    padding: 1%;
-   
+    justify-content: space-evenly;  
 }
 .nav-container h2 {
     color: white; 
 }
 .link-nav{
     text-decoration: none; 
+}
+img{
+    box-sizing: border-box;
+    width: 90px;
 }

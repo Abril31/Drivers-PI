@@ -1,14 +1,61 @@
 .main-form-cont {
-    display: block;
-    background-color: rgb(179, 231, 149);
+   display: flex;
     padding: 2%;
-    height: 85vh;
+    height: 70vh;
   }
   
-  .form-container {
+   .form-container {
     display: flex;
     flex-direction: column;
-    max-width: 30%; /* Ajusta el ancho máximo según tus necesidades */
-    margin: auto; /* Centra el formulario horizontalmente */
+    justify-content: space-between;
+    max-width: 80%;
+    margin: auto;
+    border-radius: 15px;
+    padding: 2rem;
+    background-color: black;
   }
+  .form-container h2{
+    font-family: 'Catamaran', sans-serif;
+    font-size: 20px;
+    margin: 0;
+    border: none;
+    color: white;
+    text-align: center;
+  }
+  .form-container input{
+    font-size: 20px;
+    border: none;
+  }
+  
+  .form-container select{
+    color: black;
+    font-family: 'Catamaran', sans-serif;
+  }
+  .form-container span{
+    color: white;
+    font-family: 'Catamaran', sans-serif;
+  }
+
+.btn-submit{
+    width: 100%;
+    font-family: 'Catamaran', sans-serif;
+    background-color: red;
+    color: white;
+    padding: 8px 10px; 
+    font-size: 16px; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin: 2px;
+}
+.form-text{
+    font-family: 'Catamaran', sans-serif;
+    color: white;
+    font-size: 20px;
+}
+.error{
+    color: red;
+    font-size: 13px;
+    margin-top: 0.5rem;
+}
 

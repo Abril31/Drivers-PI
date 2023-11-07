@@ -31,7 +31,7 @@ const Form = () => {
 
   const handleChange = (event) => {
     const name = event.target.name;
-    const value = event.target.value; //capto lo q escribe el usuario
+    const value = event.target.value;
     // Manejo los cambios en el form
     if (name !== "teams") {
       setState({
@@ -54,9 +54,9 @@ const Form = () => {
   };
   const disabledButton = () => {
     for (let error in errors) {
-      if (errors[error] !== "") return true; // Si hay al menos un error, deshabilitamos el botón
+      if (errors[error] !== "") return true;
     }
-    return false; // No hay errores, habilitamos el botón
+    return false;
   };
 
   //Elimina el team agregado.
@@ -77,35 +77,40 @@ const Form = () => {
   };
   return (
     <div className="main-form-cont">
-      {console.log(errors)}
       <form onSubmit={handleSubmit} className="form-container">
-        <label>Name</label>
+        <h2>Time to create your driver!</h2>
+        <br />
+        <label className="form-text">Name</label>
         <input onChange={handleChange} type="text" name="forename" />
-        <p>{errors.forename}</p>
-        <label>Lastname</label>
+        <p className="error">{errors.forename}</p>
+        <label className="form-text">Lastname</label>
         <input onChange={handleChange} type="text" name="surname" />
-        <p>{errors.surname}</p>
-        <label>
-          Description
-          <textarea
-            onChange={handleChange}
-            type="text"
-            name="description"
-            rows="5"
-            cols="50"
-          />
-        </label>
-        <p>{errors.description}</p>
-        <label>Image</label>
-        <input onChange={handleChange} type="text" name="image" />
-        <label>Nationality</label>
-        <input onChange={handleChange} type="text" name="nationality" />
-        <p>{errors.nationality}</p>
-
-        <label>Birth Date</label>
+        <p className="error">{errors.surname}</p>
+        <label className="form-text">Birth Date</label>
         <input onChange={handleChange} type="date" name="dob" />
-        <p>{errors.dob}</p>
+        <p className="error">{errors.dob}</p>
+        <label className="form-text">Nationality</label>
+        <input onChange={handleChange} type="text" name="nationality" />
+        <p className="error">{errors.nationality}</p>
 
+        <label className="form-text">Description</label>
+        <textarea
+          onChange={handleChange}
+          type="text"
+          name="description"
+          rows="5"
+          cols="50"
+        />
+        <p className="error">{errors.description}</p>
+        <label className="form-text">Image</label>
+        <input
+          onChange={handleChange}
+          type="text"
+          name="image"
+          placeholder="Optional..."
+        />
+
+        <label className="form-text">Teams</label>
         <select onChange={handleChange} name="teams">
           {allTeams.map((team) => (
             <option value={team} key={team}>
@@ -113,12 +118,14 @@ const Form = () => {
             </option>
           ))}
         </select>
-        <p>{errors.teams}</p>
+
+        <p className="error">{errors.teams}</p>
         {state.teams.map((team) => (
           <div key={team}>
-            <span>{team}</span>
+            <span> {team} </span>
 
             <button
+              className="btn-remove"
               onClick={() => {
                 remove(team);
               }}
@@ -128,9 +135,15 @@ const Form = () => {
           </div>
         ))}
 
-        <button type="submit" disabled={disabledButton()}>
-          Create your Driver!
-        </button>
+        <div>
+          <button
+            className="btn-submit"
+            type="submit"
+            disabled={disabledButton()}
+          >
+            Create your Driver!
+          </button>
+        </div>
       </form>
     </div>
   );

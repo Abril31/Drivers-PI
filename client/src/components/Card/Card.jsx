@@ -15,8 +15,8 @@ const Card = ({ id, forename, surname, image, teams, dob }) => {
               {forename} {surname}
             </h2>
             <div>
-              <p>{teams}</p>
-              <span>Date of Birth: {dob}</span>
+              <p className="teams">{teams}</p>
+              <span className="dob-text">Date of Birth: {dob}</span>
             </div>
           </div>
         </div>

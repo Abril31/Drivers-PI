@@ -9,6 +9,7 @@ import {
   getTeams,
   orderByDob,
   orderDrivers,
+  orderReverseByDob,
   orderReverseDrivers,
   restart,
 } from "../../Redux/actions.js";
@@ -44,7 +45,7 @@ const Home = () => {
   return (
     <div>
       <div className="cont-pag-or">
-        <button onClick={() => reset()}>RESET</button>
+        <button onClick={() => reset()}>REFRESH</button>
 
         <Pagination
           currentPage={currentPage}
@@ -61,19 +62,25 @@ const Home = () => {
           <button onClick={() => dispatch(orderReverseDrivers())}>Z - A</button>
         </label>
         <label>
-          Order
+          Order ⬆️
           <button onClick={() => dispatch(orderByDob())}>Birth of Date</button>
         </label>
         <label>
-          Origin
+          Order ⬇️
+          <button onClick={() => dispatch(orderReverseByDob())}>
+            Birth of Date
+          </button>
+        </label>
+        <label>
+          Origin{" "}
           <select name="filterByOrigin" onChange={filterByOrigin}>
-            <option value="All">All</option>
-            <option value="Api">Api</option>
-            <option value="Database">Database</option>
+            <option value="All"> All</option>
+            <option value="Api"> Api</option>
+            <option value="Database"> Database</option>
           </select>
         </label>
         <label>
-          Teams
+          Teams{" "}
           <select name="filterByTeams" onChange={filterByTeam}>
             {allTeams.map((team) => (
               <option key={team} value={team}>

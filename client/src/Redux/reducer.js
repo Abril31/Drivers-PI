@@ -7,6 +7,7 @@ import {
   GET_DRIVER_BY_ID,
   ORDER,
   ORDER_BY_DOB,
+  ORDER_REVERSE_BY_DOB,
   RESET,
   REVERSE,
   SEARCH_DRIVER,
@@ -91,6 +92,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         drivers: [...state.drivers.sort(orderedDob)],
       };
+    case ORDER_REVERSE_BY_DOB:
+      const orderedReverseDob = (a, b) => {
+        const dateA = new Date(a.dob);
+        const dateB = new Date(b.dob);
+        return dateB - dateA;
+      };
+      return {
+        ...state,
+        drivers: [...state.drivers.sort(orderedReverseDob)],
+      };
     case FILTER_BY_ORIGIN:
       if (action.payload === "Api") {
         const apiDrivers = state.copyDrivers.filter(
@@ -111,7 +122,7 @@ const rootReducer = (state = initialState, action) => {
     case RESET:
       return {
         ...state,
-        copyDrivers: [...state.copyDrivers],
+        drivers: [...state.copyDrivers],
       };
     default:
       return { ...state };

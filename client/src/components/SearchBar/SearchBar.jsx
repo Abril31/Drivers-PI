@@ -1,3 +1,4 @@
+import "./SearchBar.css";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getDriver, searchDriver } from "../../Redux/actions";
@@ -10,7 +11,7 @@ const SearchBar = () => {
   const handleChange = (event) => {
     setInput(event.target.value);
   };
-  //varifica si uuid
+  //verifica si uuid
   const isUUID = (value) => {
     const uuidPattern =
       /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
@@ -32,9 +33,14 @@ const SearchBar = () => {
     setInput(""); //limpia con value{}
   };
   return (
-    <div>
+    <div className="search-bar">
       <form onSubmit={handleSubmit}>
-        <input value={input} onChange={handleChange} />
+        <input
+          className="input-search-bar"
+          value={input}
+          onChange={handleChange}
+          placeholder=" Enter a name or id..."
+        />
         <button type="submit">Search</button>
       </form>
     </div>

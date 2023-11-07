@@ -1,14 +1,30 @@
 .land-container {
-    /* background-color: blueviolet; */
-    height: 100vh;
+    min-height: 100vh;
     background-image: url("./f22.png");
     background-size: cover;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+
   }
 
-.btn-land{
-padding: 3%;
-width: 150%;
+  .btn-land {
+    position: fixed;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    font-weight: bold;
+    opacity: 0.6;
+    top: 130px; 
+    left: 170px; 
+    padding: 3%;
+    width: 180px;
+    height: 180px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    border: 2px solid white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+.btn-land:hover{
+  transform: scale(1.2);
 }

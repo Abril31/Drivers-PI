@@ -6,7 +6,7 @@ const LandingPage = () => {
     <div className="land-container">
       <div className="land-cont2">
         <Link to="/home">
-          <button className="btn-land">READY...</button>
+          <button className="btn-land">GO!!!</button>
         </Link>
       </div>
     </div>

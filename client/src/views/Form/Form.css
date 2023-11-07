@@ -1,7 +1,10 @@
 .main-form-cont {
-   display: flex;
-    padding: 2%;
-    height: 70vh;
+    display: flex;
+    height: 100vh;
+    background-image: url("./f80.jpg");
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
   }
   
    .form-container {
@@ -19,7 +22,7 @@
     font-size: 20px;
     margin: 0;
     border: none;
-    color: white;
+    color: #D2F25C;
     text-align: center;
   }
   .form-container input{
@@ -39,10 +42,10 @@
 .btn-submit{
     width: 100%;
     font-family: 'Catamaran', sans-serif;
-    background-color: red;
-    color: white;
+    background-color: #D2F25C;
+    color: black;
     padding: 8px 10px; 
-    font-size: 16px; 
+    font-size: 18px; 
     border: none;
     border-radius: 5px; 
     cursor: pointer; 

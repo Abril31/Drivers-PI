@@ -51,6 +51,10 @@
     cursor: pointer; 
     margin: 2px;
 }
+.btn-submit[disabled]::before{
+  content: '🚫';
+  padding: 5px;
+}
 .form-text{
     font-family: 'Catamaran', sans-serif;
     color: white;

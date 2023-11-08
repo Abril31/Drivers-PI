@@ -3,11 +3,11 @@ export const validate = (state, name) => {
 
   if (name === "forename") {
     if (state.forename === "") {
-      newErrors.forename = "*Forename is required";
-    } else if (state.forename.length > 25) {
-      newErrors.forename = "Forename shouldn't have more than 25 characters";
+      newErrors.forename = "*Name is required";
+    } else if (state.forename.length > 25 || state.forename.length < 3) {
+      newErrors.forename = "Name should be between 3 and 25 characters";
     } else if (!/^[a-zA-Z-ñ\s]+$/.test(state.forename)) {
-      newErrors.forename = "Forename should only contain letters and spaces";
+      newErrors.forename = "Name should only contain letters and spaces";
     } else {
       newErrors.forename = "";
     }
@@ -15,11 +15,11 @@ export const validate = (state, name) => {
 
   if (name === "surname") {
     if (state.surname === "") {
-      newErrors.surname = "*Surename is required";
-    } else if (state.surname.length > 40) {
-      newErrors.surname = "Surename shouldn't have more than 40 characters";
+      newErrors.surname = "*Lastname is required";
+    } else if (state.surname.length > 40 || state.surname.length < 3) {
+      newErrors.surname = "Lastname should be between 3 and 40 characters";
     } else if (!/^[a-zA-Z-ñ\s]+$/.test(state.surname)) {
-      newErrors.surname = "Surname should only contain letters and spaces";
+      newErrors.surname = "Lastname should only contain letters and spaces";
     } else {
       newErrors.surname = "";
     }
@@ -56,13 +56,15 @@ export const validate = (state, name) => {
     if (state.dob === "") {
       newErrors.dob = "*Date of birth is required";
     } else {
-      // Verificar si la fecha de nacimiento cumple con la edad de 18 años o más
-      const dob = new Date(state.dob); //Fecha ingresada
-      const eighteenYearsAgo = new Date(); //Fecha actual
+      //Manejo min y max de edades
+      const dob = new Date(state.dob);
+      const eighteenYearsAgo = new Date();
       eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18); //2005
+      const eightyYearsAgo = new Date();
+      eightyYearsAgo.setFullYear(eightyYearsAgo.getFullYear() - 80);
 
-      if (dob > eighteenYearsAgo) {
-        newErrors.dob = "Must be 18 or older";
+      if (dob > eighteenYearsAgo || dob < eightyYearsAgo) {
+        newErrors.dob = "Must be between 18 and 80 years old"; //1943
       } else {
         newErrors.dob = "";
       }

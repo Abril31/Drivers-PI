@@ -35,6 +35,7 @@ const Home = () => {
 
   const filterByTeam = (event) => {
     dispatch(filterTeam(event.target.value));
+    event.target.value = "Select an option";
   };
   const reset = () => {
     dispatch(restart());
@@ -82,6 +83,7 @@ const Home = () => {
         <label>
           Teams{" "}
           <select name="filterByTeams" onChange={filterByTeam}>
+            <option>Select an option</option>
             {allTeams.map((team) => (
               <option key={team} value={team}>
                 {team}

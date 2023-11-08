@@ -1,7 +1,7 @@
 import "./Form.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { validate } from "../helpers/validate";
+import { validate } from "../../helpers/validate";
 import { getTeams, postDriver } from "../../Redux/actions";
 
 const Form = () => {

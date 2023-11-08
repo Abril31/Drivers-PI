@@ -6,7 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 const NavBar = () => {
   return (
     <div className="nav-container">
-      <img src="./car.svg" />
+      <img src="./car.svg" alt="car" />
       <Link to="/home" className="link-nav">
         <h2>HOME</h2>
       </Link>

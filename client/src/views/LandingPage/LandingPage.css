@@ -24,6 +24,7 @@
     border: 2px solid white;
     border-radius: 50%;
     transition: transform 0.3s;
+    cursor: pointer;
 }
 .btn-land:hover{
   transform: scale(1.2);

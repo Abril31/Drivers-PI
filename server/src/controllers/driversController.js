@@ -16,7 +16,7 @@ const getAllDrivers = async () => {
   });
 
   const response = await axios.get("http://localhost:5000/drivers");
-  const apiDrivers = cleanArray(response.data); //unifica la info, no tocar!
+  const apiDrivers = cleanArray(response.data);
 
   return [...cleanArrayId(dataBaseDrivers), ...apiDrivers];
 };
@@ -26,11 +26,13 @@ const getDriverByName = async (name) => {
   const response = await axios.get("http://localhost:5000/drivers");
   const apiDrivers = cleanArray(response.data);
 
-  const driverFiltered = apiDrivers.filter(
-    (driver) =>
-      driver.forename.toLowerCase() === name.toLowerCase() ||
-      driver.surname.toLowerCase() === name.toLowerCase()
-  );
+  const driverFiltered = apiDrivers
+    .filter(
+      (driver) =>
+        driver.forename.toLowerCase().includes(name.toLowerCase()) ||
+        driver.surname.toLowerCase().includes(name.toLowerCase())
+    )
+    .slice(0, 15);
 
   // Busco en la DB
   const dataBaseDriverName = await Driver.findAll({
@@ -38,19 +40,29 @@ const getDriverByName = async (name) => {
       [Op.or]: [
         {
           forename: {
-            [Op.iLike]: name, //sin distinción
+            [Op.iLike]: `%${name}%`,
           },
         },
         {
           surname: {
-            [Op.iLike]: name,
+            [Op.iLike]: `%${name}%`,
           },
         },
       ],
     },
+    include: [
+      {
+        model: Team,
+        attributes: ["name"],
+        through: {
+          attributes: [],
+        },
+      },
+    ],
+    limit: 15,
   });
 
-  const result = [...driverFiltered, ...dataBaseDriverName];
+  const result = [...driverFiltered, ...cleanArrayId(dataBaseDriverName)];
   console.log(result);
   if (response.data.length === 0) {
     throw new Error(`No driver found with the name: ${name}`);
@@ -71,14 +83,14 @@ const driverById = async (id, origin) => {
       },
     });
 
-    return cleanArrayId([dataBaseDriver]); //Funciona, no tocar!
+    return cleanArrayId([dataBaseDriver]);
   } else if (origin === "api") {
     const response = await axios.get(`http://localhost:5000/drivers/${id}`);
-    const apiDriver = cleanArray([response.data]); //Unificado, no tocar!
+    const apiDriver = cleanArray([response.data]);
 
     return apiDriver;
   } else {
-    throw new Error("Enter a valid id");
+    throw new Error("Therea was a problem with the id");
   }
 };
 module.exports = { getAllDrivers, driverById, getDriverByName };

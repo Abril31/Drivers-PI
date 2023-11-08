@@ -28,7 +28,7 @@ const teams = async () => {
     );
     return finalTeams;
   } catch (error) {
-    throw new Error("Error al obtener los equipos");
+    throw new Error("There was error.");
   }
 };
 

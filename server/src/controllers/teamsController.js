@@ -14,13 +14,14 @@ const teams = async () => {
           ? team.split(",").map((team) => team.trim())
           : team.trim()
       );
-    //Chau duplicados
-    const finalTeams = [...new Set(filteredTeams)].sort();
+    //Modificador global g
+    const finalTeams = [
+      ...new Set(filteredTeams.map((team) => team.replace(/–/g, "-"))),
+    ].sort();
 
     // Cargar a la base de Datos
     await Promise.all(
       finalTeams.map(async (team) => {
-        // Find or create para evitar duplicados en la base de datos
         await Team.findOrCreate({
           where: { name: team },
         });

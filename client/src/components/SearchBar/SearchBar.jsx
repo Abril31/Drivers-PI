@@ -34,6 +34,7 @@ const SearchBar = () => {
     }
     setInput(""); //limpia con value{}
   };
+
   return (
     <div className="search-bar">
       <form onSubmit={handleSubmit}>

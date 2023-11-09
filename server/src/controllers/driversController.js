@@ -34,7 +34,7 @@ const getDriverByName = async (name) => {
     )
     .slice(0, 15);
 
-  // Busco en la DB
+  // Busco en la DB y asocia el Modelo
   const dataBaseDriverName = await Driver.findAll({
     where: {
       [Op.or]: [
@@ -63,7 +63,6 @@ const getDriverByName = async (name) => {
   });
 
   const result = [...driverFiltered, ...cleanArrayId(dataBaseDriverName)];
-  console.log(result);
   if (response.data.length === 0) {
     throw new Error(`No driver found with the name: ${name}`);
   }

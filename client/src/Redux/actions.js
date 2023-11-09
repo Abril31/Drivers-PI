@@ -2,7 +2,6 @@ import {
   CLEAN_DRIVER,
   FILTER_BY_ORIGIN,
   FILTER_BY_TEAM,
-  // CREATE_DRIVER,
   GET_ALL_TEAMS,
   GET_DRIVERS,
   GET_DRIVER_BY_ID,
@@ -24,7 +23,7 @@ export const getDrivers = () => {
         payload: drivers,
       });
     } catch (error) {
-      alert("There was a problem", error.message);
+      alert("There was a problem. " + error.message);
     }
   };
 };
@@ -38,7 +37,7 @@ export const getDriver = (id) => {
         payload: driver,
       });
     } catch (error) {
-      alert("Driver not found", error.message);
+      alert("Driver not found. " + error.message);
     }
   };
 };
@@ -55,8 +54,7 @@ export const searchDriver = (name) => {
       });
     } catch (error) {
       alert(
-        "Driver not found 😥, please try a different name...",
-        error.message
+        "Driver not found 😥, please try a different name... " + error.message
       );
     }
   };
@@ -72,7 +70,7 @@ export const getTeams = () => {
         payload: dataTeams,
       });
     } catch (error) {
-      console.log("Error al traer los teams");
+      alert("There a was a problem. " + error.message);
     }
   };
 };
@@ -85,7 +83,7 @@ export const filterTeam = (teamSelected) => {
         payload: teamSelected,
       });
     } catch (error) {
-      alert("Something went wrong", error.message);
+      alert("Something went wrong. " + error.message);
     }
   };
 };
@@ -99,7 +97,7 @@ export const postDriver = (state) => {
       const createDriver = response.data;
       return createDriver;
     } catch (error) {
-      alert("Sorry, an error occurred");
+      alert("Sorry, an error occurred. " + error.message);
     }
   };
 };
@@ -129,7 +127,3 @@ export const restart = () => {
     }
   };
 };
-export const setPage = (page) => ({
-  type: SET_PAGE,
-  payload: page,
-});

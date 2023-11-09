@@ -66,7 +66,10 @@ const Form = () => {
       ...state,
       teams: newTeams,
     });
+    const newErrors = validate({ ...state, teams: newTeams }, "teams");
+    setErrors({ ...errors, ...newErrors });
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(postDriver(state))

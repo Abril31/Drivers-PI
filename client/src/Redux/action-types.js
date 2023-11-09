@@ -10,5 +10,3 @@ export const ORDER_BY_DOB = "ORDER_BY_DOB";
 export const ORDER_REVERSE_BY_DOB = "ORDER_REVERSE_BY_DOB";
 export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 export const RESET = "RESET";
-
-// export const CREATE_DRIVER = "CREATE_DRIVER";

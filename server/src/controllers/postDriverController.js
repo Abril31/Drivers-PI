@@ -11,10 +11,10 @@ const createDriver = async ({
 }) => {
   try {
     if (!Array.isArray(teams)) {
-      throw new Error("teams debe ser un array");
+      throw new Error("Teams should be an array");
     }
 
-    // Crear el nuevo conductor
+    // Crear el nuevo driver
     const createNewDriver = await Driver.create({
       id,
       forename,
@@ -32,7 +32,7 @@ const createDriver = async ({
     await createNewDriver.addTeams(databaseTeams);
     return createNewDriver;
   } catch (error) {
-    console.error("Error al crear el driver", error);
+    throw new Error("Driver not created");
   }
 };
 module.exports = createDriver;

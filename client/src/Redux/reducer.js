@@ -25,7 +25,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         drivers: action.payload,
-        copyDrivers: action.payload, // copyDrivers NUNCA se modifica.
+        copyDrivers: action.payload,
       };
     case GET_DRIVER_BY_ID:
       return {
@@ -41,7 +41,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         drivers: action.payload,
-        driver: action.payload,
       };
     case GET_ALL_TEAMS:
       return {

@@ -17,7 +17,7 @@ const cleanArray = (array) => {
 };
 const cleanArrayId = (array) => {
   return array.map((driver) => {
-    let teams = driver.Teams ? driver.Teams.map((team) => team.name) : []; // Acceder a Teams y extraer los nombres
+    let teams = driver.Teams ? driver.Teams.map((team) => team.name) : [];
     let defaultImage =
       "https://images.pexels.com/photos/18373115/pexels-photo-18373115/free-photo-of-coche-vehiculo-prisa-neumatico.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
     return {

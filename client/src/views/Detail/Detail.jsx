@@ -53,7 +53,11 @@ function Detail() {
         </div>
         <div className="img-container">
           <h1> ID: {driver[0]?.id}</h1>
-          <img src={driver[0]?.image || defaultImage} className="image" />
+          <img
+            src={driver[0]?.image || defaultImage}
+            className="image"
+            alt={driver.image}
+          />
         </div>
       </section>
     </div>

@@ -14,7 +14,7 @@ import {
   restart,
 } from "../../Redux/actions.js";
 import { Pagination } from "../../components/Pagination/Pagination";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,7 +27,7 @@ const Home = () => {
   const firstDriverIndex = lastDriverIndex - driversPerPage;
 
   const { id } = useParams();
-
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getDrivers());
     dispatch(getTeams());
@@ -39,6 +39,7 @@ const Home = () => {
   };
   const reset = () => {
     dispatch(restart());
+    navigate("/home");
   };
   const filterByOrigin = (event) => {
     dispatch(filterBySource(event.target.value));

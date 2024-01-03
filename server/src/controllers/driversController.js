@@ -4,7 +4,6 @@ const { Driver, Team } = require("../db");
 const { Op } = require("sequelize");
 
 const getAllDrivers = async () => {
-  //Get de la base de datos
   const dataBaseDrivers = await Driver.findAll({
     include: {
       model: Team,
@@ -22,7 +21,6 @@ const getAllDrivers = async () => {
 };
 
 const getDriverByName = async (name) => {
-  // Busco en la API
   const response = await axios.get("http://localhost:5000/drivers");
   const apiDrivers = cleanArray(response.data);
 
@@ -34,7 +32,6 @@ const getDriverByName = async (name) => {
     )
     .slice(0, 15);
 
-  // Busco en la DB y asocia el Modelo
   const dataBaseDriverName = await Driver.findAll({
     where: {
       [Op.or]: [

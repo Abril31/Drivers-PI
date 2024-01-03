@@ -75,7 +75,7 @@ const Form = () => {
     dispatch(postDriver(state))
       .then(() => alert("Driver created successfully 🏁!"))
       .catch((error) => {
-        alert("There was a problem 😥, try again, please", error);
+        alert("There was a problem 😥, try again, please.");
       });
   };
   return (

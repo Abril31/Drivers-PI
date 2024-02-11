@@ -22,7 +22,7 @@ function Detail() {
           <div className="main-info">
             <div className="info">
               <h3 className="tex-name">
-                <span className="name-label">Name:</span> {driver[0]?.forename}
+                <span className="name-label">Name:</span> {driver[0]?.forename}{" "}
                 {driver[0]?.surname}
               </h3>
               <h3 className="tex-name">

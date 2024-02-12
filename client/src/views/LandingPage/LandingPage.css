@@ -1,6 +1,6 @@
 .land-container {
     min-height: 100vh;
-    background-image: url("./f22.png");
+    background-image: url("../../assets/images/f22.png");
     background-size: cover;
     display: flex;
     align-items: flex-start;

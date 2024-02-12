@@ -1,7 +1,7 @@
 .main-form-cont {
     display: flex;
     height: 100vh;
-    background-image: url("./f80.jpg");
+    background-image: url("../../assets/images/f80.jpg");
     background-size: cover;
     background-position: right;
     background-repeat: no-repeat;
